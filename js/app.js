@@ -221,4 +221,57 @@ document.addEventListener("DOMContentLoaded", async () => {
       modal.style.display = "none";
       resourceForm.reset();
   });
+
+      // Load resources from server
+    async function loadResourcesData() {
+        try {
+            const response = await fetch('/api/resources');
+            if (!response.ok) throw new Error('Network response was not ok');
+            resourceDatabase = await response.json();
+            loadCategories();
+        } catch (error) {
+            console.error('Error loading resources:', error);
+            // Handle error
+        }
+    }
+
+    // Modified form submission
+    resourceForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('resource-name').value.trim(),
+            url: document.getElementById('resource-url').value.trim(),
+            category: document.getElementById('resource-category').value,
+            subcategory: document.getElementById('resource-subcategory').value.trim(),
+            description: document.getElementById('resource-description').value.trim()
+        };
+
+        try {
+            const response = await fetch('/api/resources', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Refresh data
+                await loadResourcesData();
+                loadResources(formData.category, formData.subcategory);
+                modal.style.display = 'none';
+                resourceForm.reset();
+                alert('Resource added successfully!');
+            } else {
+                alert(result.error || 'Error adding resource');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('Error submitting resource. Please try again.');
+        }
+    });
+
+    // Initialize by loading data
+    loadResourcesData();
 });
