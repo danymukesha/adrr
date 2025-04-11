@@ -1,0 +1,23 @@
+{
+  "name": "adrr",
+  "version": "1.0.0",
+  "description": "This repository should contain useful (hopefully all) resource links and references that could help the Alzheimer's disease research project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danymukesha/ADRR.git"
+  },
+  "author": "Dany Mukesha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danymukesha/ADRR/issues"
+  },
+  "homepage": "https://github.com/danymukesha/ADRR#readme",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
