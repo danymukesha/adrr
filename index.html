@@ -24,7 +24,7 @@
     
     <section class="hero">
         <div class="container">
-            <h1>Comprehensive Resources for Alzheimer's Disease Research</h1>
+            <h1>Encyclopedic Resources for Alzheimer's Disease Research</h1>
             <p>A collaborative hub of databases, tools, publications, and more to support Alzheimer's disease research worldwide.</p>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search resources...">
@@ -39,6 +39,7 @@
                 <h3 class="sidebar-title">Categories</h3>
                 <ul class="menu" id="categories-menu">
                     <!-- Categories will be dynamically loaded from database.js -->
+                    <li class="menu-item"><a href="#" class="menu-link">Databases</a></li>
                 </ul>
             </aside>
             
@@ -46,6 +47,7 @@
                 <!-- Content will be dynamically loaded from database.js -->
                 <div class="loading">
                     <p>Loading resources...</p>
+                    <p id="country"></p>
                 </div>
             </div>
         </div>
@@ -99,8 +101,6 @@
             </form>
         </div>
     </div>
-    
-    <script src="js/database.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
