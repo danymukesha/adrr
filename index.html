@@ -28,7 +28,7 @@
             <p>A collaborative hub of databases, tools, publications, and more to support Alzheimer's disease research worldwide.</p>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search resources...">
-                <button class="search-button"><i class="fas fa-search"></i></button>
+                <button class="search-button" aria-label="Search"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </section>
@@ -38,16 +38,13 @@
             <aside class="sidebar">
                 <h3 class="sidebar-title">Categories</h3>
                 <ul class="menu" id="categories-menu">
-                    <!-- Categories will be dynamically loaded from database.js -->
-                    <li class="menu-item"><a href="#" class="menu-link">Databases</a></li>
+                    <li class="menu-item loading-text">Loading categories...</li>
                 </ul>
             </aside>
             
             <div class="content-area" id="content-area">
-                <!-- Content will be dynamically loaded from database.js -->
                 <div class="loading">
                     <p>Loading resources...</p>
-                    <p id="country"></p>
                 </div>
             </div>
         </div>
@@ -58,14 +55,14 @@
             <p>© 2025 Alzheimer's Disease Research Resources</p>
             <p>A collaborative platform for researchers, clinicians, and everyone involved in the fight against Alzheimer's disease.</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </footer>
     
-    <button class="edit-button" id="edit-button" title="Add or Edit Resource"><i class="fas fa-plus"></i></button>
+    <button class="edit-button" id="edit-button" title="Add or Edit Resource" aria-label="Add resource"><i class="fas fa-plus"></i></button>
     
     <!-- Modal for adding/editing resources -->
     <div id="edit-modal" class="modal">
@@ -74,18 +71,17 @@
             <h2>Add/Edit Resource</h2>
             <form id="resource-form">
                 <div class="form-group">
-                    <label for="resource-name" class="form-label">Resource Name</label>
+                    <label for="resource-name" class="form-label">Resource Name*</label>
                     <input type="text" id="resource-name" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="resource-url" class="form-label">URL</label>
+                    <label for="resource-url" class="form-label">URL*</label>
                     <input type="url" id="resource-url" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="resource-category" class="form-label">Category</label>
+                    <label for="resource-category" class="form-label">Category*</label>
                     <select id="resource-category" class="form-select" required>
                         <option value="">Select a category</option>
-                        <!-- Categories will be dynamically loaded from database.js -->
                     </select>
                 </div>
                 <div class="form-group">
@@ -93,7 +89,7 @@
                     <input type="text" id="resource-subcategory" class="form-input">
                 </div>
                 <div class="form-group">
-                    <label for="resource-description" class="form-label">Description</label>
+                    <label for="resource-description" class="form-label">Description*</label>
                     <textarea id="resource-description" class="form-textarea" required></textarea>
                 </div>
                 <input type="hidden" id="resource-id" value="">
