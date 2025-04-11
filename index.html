@@ -7,12 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
   </script>
-  <script>
-    $(function () {
-      $("#header").load("header.html");
-      $("#footer").load("html/footer.html");
-    });
-  </script>
 </head>
 <body>
     <header>
@@ -57,18 +51,8 @@
         </div>
     </main>
     
-<footer>
-  <div class="container footer-content">
-      <p>© 2025 Alzheimer's Disease Research Resources</p>
-      <p>A collaborative platform for researchers, clinicians, and everyone involved in the fight against Alzheimer's disease.</p>
-      <div class="social-links">
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      </div>
-  </div>
-</footer>
-    
+    <script src='js/footer.js'></script>
+
     <button class="edit-button" id="edit-button" title="Add or Edit Resource" aria-label="Add resource"><i class="fas fa-plus"></i></button>
     
     <!-- Modal for adding/editing resources -->
