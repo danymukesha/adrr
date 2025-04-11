@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  // DOM Elements
   const categoriesMenu = document.getElementById("categories-menu");
   const contentArea = document.getElementById("content-area");
   const searchInput = document.querySelector(".search-input");
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const modalClose = document.querySelector(".modal .close");
   const editButton = document.getElementById("edit-button");
 
-  // Load resources data
   let resourceDatabase = {};
   
   try {
@@ -23,19 +21,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       contentArea.innerHTML = '<div class="error-message"><p>Error loading resources. Please refresh the page or try again later.</p></div>';
   }
 
-  // Populate categories and sidebar
   function loadCategories() {
-      categoriesMenu.innerHTML = ''; // Clear loading message
+      categoriesMenu.innerHTML = ''; // just here I am clearing the loading message
       
       for (let categoryKey in resourceDatabase) {
           const category = resourceDatabase[categoryKey];
           
-          // Create category list item
           const categoryItem = document.createElement("li");
           categoryItem.className = "menu-item category-item";
           categoryItem.innerHTML = `<a href="#" class="category-link" data-category="${categoryKey}">${category.name}</a>`;
           
-          // Create subcategories list if they exist
           if (category.subcategories && Object.keys(category.subcategories).length > 0) {
               const subList = document.createElement("ul");
               subList.className = "subcategory-list";
@@ -54,7 +49,17 @@ document.addEventListener("DOMContentLoaded", async () => {
               
               categoryItem.appendChild(subList);
               
-              // Add click event to category link
+              // i add here click event to category link
+              categoryItem.appendChild(subList);
+
+              categoryItem.addEventListener("mouseover", () => {
+                  subList.style.display = "block"; 
+              });
+
+              categoryItem.addEventListener("mouseout", () => {
+                  subList.style.display = "none"; 
+              });
+
               categoryItem.querySelector(".category-link").addEventListener("click", (e) => {
                   e.preventDefault();
                   const firstSubKey = Object.keys(category.subcategories)[0];
@@ -202,6 +207,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       
       // In a real app, you would send this data to a server
+      // For now, we'll just log it to the console 
+      // and show a success message
       console.log("Form submitted:", {
           name,
           url,
