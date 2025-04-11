@@ -3,7 +3,7 @@
 **Motivation:** The idea for this repository comes from my experience during my PhD, where I spent a lot of time and energy searching for resources that are normally freely accessible but sometimes hard to find. Primarily, if you are new to or transitioning into the field of Alzheimer's research, I hope this could help you to have a good starting point and save your time.  
 So, I decided to share what I would call a `complete` collection of materials and resources for Alzheimer's disease research, which will, of course, continue to grow to support research and everyone interested or working in this field. 
 
-I will continuously share more about my current research, therefore stay tune. ✌️
+I will continuously share more about my current research, therefore stay tuned. ✌️
 
 ---
 
