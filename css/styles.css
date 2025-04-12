@@ -94,6 +94,7 @@ header {
   margin: 2rem 0;
 }
 
+
 .sidebar {
   background: var(--light-bg);
   padding: 1rem;
@@ -301,4 +302,38 @@ footer {
 
 .form-submit:hover {
   background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+  .two-column {
+      grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+      position: relative;
+      top: 0;
+      height: auto;
+      margin-bottom: 2rem;
+  }
+  
+  .resources-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .hero h1 {
+      font-size: 2rem;
+  }
+  
+  .modal-content {
+      width: 95%;
+      margin: 5% auto;
+  }
+  
+  .nav-menu {
+      flex-direction: column;
+  }
+  
+  .nav-item {
+      margin: 0.5rem 0;
+  }
 }
