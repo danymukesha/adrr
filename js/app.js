@@ -192,33 +192,64 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Resource form submission
-  resourceForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+  document.getElementById("resource-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
       
-      // Basic form validation
-      const name = document.getElementById("resource-name").value.trim();
-      const url = document.getElementById("resource-url").value.trim();
-      const category = document.getElementById("resource-category").value;
-      const description = document.getElementById("resource-description").value.trim();
+      const formData = {
+        category: document.getElementById("resource-category").value,
+        subcategory: document.getElementById("resource-subcategory").value.trim(),
+        name: document.getElementById("resource-name").value.trim(),
+        url: document.getElementById("resource-url").value.trim(),
+        description: document.getElementById("resource-description").value.trim()
+      };
       
-      if (!name || !url || !category || !description) {
-          alert("Please fill in all required fields (marked with *)");
-          return;
+      if (!formData.name || !formData.url || !formData.category || !formData.description) {
+        alert("Please fill in all required fields (marked with *)");
+        return;
       }
       
       // In a real app, you would send this data to a server
       // For now, we'll just log it to the console 
       // and show a success message
+      try {
+        const response = await fetch("http://localhost:3000/api/resources", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData)
+        });
+  
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || "Failed to save resource");
+        }
+  
+        const result = await response.json();
+        alert("Resource saved successfully!");
+        
+        // Close modal and reset form
+        document.getElementById("edit-modal").style.display = "none";
+        document.getElementById("resource-form").reset();
+        
+        // Refresh data
+      // await refreshApplicationData();
+      // In a real app, you would send this data to a server
+      // For now, we'll just log it to the console 
+      // and show a success message
       console.log("Form submitted:", {
-          name,
-          url,
-          category,
-          subcategory: document.getElementById("resource-subcategory").value.trim(),
-          description
+        name: formData.name,
+        category: formData.category,
+        subcategory: document.getElementById("resource-subcategory").value.trim(),
+        description: formData.description
       });
       
-      alert("Thank you for your submission! In a production environment, this would be saved to our database.");
+      alert("Thank you for your submission! In a production environment, this will examined and if it is OKAY will be saved to our database.");
       modal.style.display = "none";
       resourceForm.reset();
+    } catch (error) {
+      console.error("Submission error:", JSON.stringify(formData));
+      alert(`Error: ${error.message}`);
+    }
   });
 });

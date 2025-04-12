@@ -6,8 +6,8 @@ template.innerHTML = `
       <p>A collaborative platform for researchers, clinicians, and everyone involved in the fight against Alzheimer's disease.</p>
       <div class="social-links">
           <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://danymukesha.github.io/" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/dany-mukesha/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
   </div>
 </footer>

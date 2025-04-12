@@ -18,6 +18,10 @@ app.get('/', async(req, res) => {
   res.sendFile(path.join(__dirname, '', 'index.html'));
 });
 
+app.get("/status", (req, res) => {
+    res.json({ status: "Server is running" });
+});
+
 // call get to obtain all resources
 app.get('/api/resources', async (req, res) => {
     try {
@@ -43,7 +47,7 @@ app.post('/api/resources', async (req, res) => {
             return res.status(400).json({ error: 'Invalid subcategory' });
         }
 
-        subcategory.resources.push({
+        data[category].subcategories[subcategory].resources.push({
             id: Date.now().toString(),
             name: newResource.name,
             description: newResource.description,
@@ -51,8 +55,9 @@ app.post('/api/resources', async (req, res) => {
         });
 
         await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-        res.json({ success: true, message: 'Resource added successfully' });
+        res.json({ success: true, message: 'Resource added successfully', newResource: resource});
     } catch (error) {
+        console.error('Server error:', error);  
         res.status(500).json({ error: 'Error saving resource' });
     }
 });
