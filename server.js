@@ -1,67 +1,44 @@
 const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.static(__dirname + '/'));
-const DATA_FILE = path.join(__dirname, 'js', 'resources.json');
+const DATA_PATH = path.join(__dirname, '.', 'js', 'resources.json');
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.static('.'));
 
-app.get('/', async(req, res) => {
-  res.sendFile(path.join(__dirname, '', 'index.html'));
-});
-
-app.get("/status", (req, res) => {
-    res.json({ status: "Server is running" });
-});
-
-// call get to obtain all resources
 app.get('/api/resources', async (req, res) => {
     try {
-        const data = await fs.readFile(DATA_FILE, 'utf8');
+        const data = await fs.readFile(DATA_PATH, 'utf8');
         res.json(JSON.parse(data));
     } catch (error) {
         res.status(500).json({ error: 'Error reading resources' });
     }
 });
 
-// if the user wants to add new resource
 app.post('/api/resources', async (req, res) => {
     try {
-        const newResource = req.body;
-        const data = JSON.parse(await fs.readFile(DATA_FILE, 'utf8'));
-        
-        if (!data[newResource.category]) {
-            return res.status(400).json({ error: 'Invalid category' });
-        }
+        const { category, subcategory, ...resource } = req.body;
+        const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 
-        const subcategory = data[newResource.category].subcategories[newResource.subcategory];
-        if (!subcategory) {
-            return res.status(400).json({ error: 'Invalid subcategory' });
+        if (!data[category]?.subcategories[subcategory]) {
+            return res.status(400).json({ error: 'Invalid category/subcategory' });
         }
 
         data[category].subcategories[subcategory].resources.push({
             id: Date.now().toString(),
-            name: newResource.name,
-            description: newResource.description,
-            url: newResource.url
+            ...resource
         });
 
-        await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-        res.json({ success: true, message: 'Resource added successfully', newResource: resource});
+        await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2));
+        res.json({ success: true });
     } catch (error) {
-        console.error('Server error:', error);  
         res.status(500).json({ error: 'Error saving resource' });
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server successfully running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
