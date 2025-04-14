@@ -16,17 +16,25 @@ app.get('/api/resources', async (req, res) => {
         const data = await fs.readFile(DATA_PATH, 'utf8');
         res.json(JSON.parse(data));
     } catch (error) {
-        res.status(500).json({ error: 'Error reading resources' });
+        res.status(500).json({
+            error: 'Error reading resources'
+        });
     }
 });
 
 app.post('/api/resources', async (req, res) => {
     try {
-        const { category, subcategory, ...resource } = req.body;
+        const {
+            category,
+            subcategory,
+            ...resource
+        } = req.body;
         const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 
-        if (!data[category]?.subcategories[subcategory]) {
-            return res.status(400).json({ error: 'Invalid category/subcategory' });
+        if (!data[category]?.subcategories[subcategory]) { // todo: adapt this part for "other" non-existing categories
+            return res.status(400).json({
+                error: 'Invalid category/subcategory'
+            });
         }
 
         data[category].subcategories[subcategory].resources.push({
@@ -35,9 +43,13 @@ app.post('/api/resources', async (req, res) => {
         });
 
         await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2));
-        res.json({ success: true });
+        res.json({
+            success: true
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Error saving resource' });
+        res.status(500).json({
+            error: 'Error saving resource'
+        });
     }
 });
 
