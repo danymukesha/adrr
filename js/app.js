@@ -52,13 +52,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (selectedCategory && resourceDatabase[selectedCategory]?.subcategories) {
           const subcategories = resourceDatabase[selectedCategory].subcategories;
 
-          // Add existing subcategories
+          // the addition of existing subcategories with a prior check
           Object.entries(subcategories).forEach(([subKey, sub]) => {
               const option = new Option(sub.name, subKey);
               resourceSubcategorySelect.appendChild(option);
           });
-
-          // Add "Other" option
+	
+  	  // add "Other" option, if subcategory doesn't exist.
           const otherOption = new Option("Other (specify below)", "other");
           resourceSubcategorySelect.appendChild(otherOption);
       }

@@ -31,12 +31,6 @@
             "description": "A comprehensive resource for genetic studies of Alzheimer's disease."
           },
           {
-            "description": "Large-scale sequencing analysis of genomes of individuals with Alzheimer's disease.",
-            "id": "adsp",
-            "name": "Alzheimer's Disease Sequencing Project (ADSP)",
-            "url": "https://www.niagads.org/adsp/"
-          },
-          {
             "id": "addi",
             "name": "Alzheimer's Disease Data Initiative (ADDI)",
             "url": "https://www.alzheimersdata.org/",
@@ -47,6 +41,18 @@
             "name": "AMP-AD Knowledge Portal",
             "url": "https://adknowledgeportal.synapse.org/",
             "description": "Data, tools, and resources for the study of Alzheimer's disease."
+          },
+          {
+            "id": "alzgps",
+            "name": "AlzGPS",
+            "url": "https://alzgps.lerner.ccf.org/",
+            "description": "A genome-wide positioning systems platform for Alzheimer's disease drug discovery."
+          },
+          {
+            "id": "alzped",
+            "name": "AlzPED",
+            "url": "https://alzped.nia.nih.gov/",
+            "description": "Alzheimer's Preclinical Efficacy Database for evaluation of preclinical therapy development."
           }
         ]
       },
@@ -54,22 +60,22 @@
         "name": "General Neuroscience",
         "resources": [
           {
-            "description": "A national resource for molecular and cell biologists with an interest in neuroscience research.",
             "id": "ncmir",
             "name": "National Center for Microscopy and Imaging Research",
-            "url": "https://ncmir.ucsd.edu/"
+            "url": "https://ncmir.ucsd.edu/",
+            "description": "A national resource for molecular and cell biologists with an interest in neuroscience research."
           },
           {
-            "description": "A resource for the neuroscience community to share and access data.",
             "id": "neurovault",
             "name": "NeuroVault",
-            "url": "https://neurovault.org/"
+            "url": "https://neurovault.org/",
+            "description": "A resource for the neuroscience community to share and access data."
           },
           {
-            "description": "A comprehensive atlas/database of human brain gene expression data in the adult and developing brain.",
             "id": "allen-brain",
             "name": "Allen Brain Atlas",
-            "url": "http://www.brain-map.org/"
+            "url": "https://portal.brain-map.org/",
+            "description": "Comprehensive atlas of gene expression in the adult and developing brain."
           },
           {
             "id": "human-brain",
@@ -194,6 +200,35 @@
             "description": "EU Joint Programme on Neurodegenerative Disease Research."
           }
         ]
+      },
+      "consortia": {
+        "name": "Consortia & Collaborative Projects",
+        "resources": [
+          {
+            "id": "dian",
+            "name": "Dominantly Inherited Alzheimer Network (DIAN)",
+            "url": "https://dian.wustl.edu/",
+            "description": "International research partnership studying dominantly inherited Alzheimer's disease."
+          },
+          {
+            "id": "eadb",
+            "name": "European Alzheimer's Disease Biobank (EADB)",
+            "url": "https://cordis.europa.eu/project/id/601055",
+            "description": "Large-scale biobanking initiative."
+          },
+          {
+            "id": "modelad",
+            "name": "MODEL-AD",
+            "url": "https://model-ad.org/",
+            "description": "Center developing next-generation mouse models of Alzheimer's disease."
+          },
+          {
+            "id": "aibl",
+            "name": "Australian Imaging, Biomarkers and Lifestyle Study (AIBL)",
+            "url": "https://aibl.csiro.au/",
+            "description": "Study of biomarkers, cognitive characteristics, and lifestyle factors."
+          }
+        ]
       }
     }
   },
@@ -227,6 +262,12 @@
             "name": "gnomAD",
             "url": "https://gnomad.broadinstitute.org/",
             "description": "Genome Aggregation Database for population genetics."
+          },
+          {
+            "id": "clinvar",
+            "name": "ClinVar",
+            "url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+            "description": "Database of genetic variations and their clinical significance."
           }
         ]
       },
@@ -250,6 +291,12 @@
             "name": "PolyPhen-2",
             "url": "http://genetics.bwh.harvard.edu/pph2/",
             "description": "Tool for prediction of possible impact of amino acid substitutions."
+          },
+          {
+            "id": "adknowledge",
+            "name": "Alzheimer's Disease Knowledge Portal",
+            "url": "https://adknowledgeportal.synapse.org/",
+            "description": "Platform for accessing and analyzing genomic data."
           }
         ]
       }
@@ -265,7 +312,7 @@
           {
             "id": "bbig",
             "name": "Blood-Based Biomarker Interest Group",
-            "url": "https://alz.org/bbig/overview.asp",
+            "url": "BBIG_URL",
             "description": "Alzheimer's Association initiative for blood biomarkers."
           },
           {
@@ -290,6 +337,23 @@
             "name": "CSF Biomarker Database",
             "url": "https://www.alzforum.org/alzbiomarker",
             "description": "Database of published CSF biomarker performance."
+          }
+        ]
+      },
+      "standardization": {
+        "name": "Biomarker Standardization",
+        "resources": [
+          {
+            "id": "biomarker-summit",
+            "name": "Biomarkers for Alzheimer's Disease Research Summit",
+            "url": "https://www.nia.nih.gov/research/milestones/biomarkers-alzheimers-disease-research-summit",
+            "description": "NIA initiative for biomarker standardization."
+          },
+          {
+            "id": "global-biomarker",
+            "name": "Global Biomarker Standardization Consortium",
+            "url": "https://www.alzforum.org/news/conference-coverage/global-biomarker-standardization-consortium-moves-forward",
+            "description": "International effort to standardize biomarker tests."
           }
         ]
       }
@@ -342,6 +406,12 @@
             "name": "ADNI PET Protocols",
             "url": "http://adni.loni.usc.edu/methods/pet-analysis/",
             "description": "Standardized PET protocols for Alzheimer's research."
+          },
+          {
+            "id": "tau-pet",
+            "name": "Tau PET Consortium",
+            "url": "https://medicine.wustl.edu/news/international-tau-consortium-announced/",
+            "description": "International collaboration on tau imaging."
           }
         ]
       },
@@ -359,6 +429,35 @@
             "name": "Neuroimaging Informatics Technology Initiative (NIfTI)",
             "url": "https://nifti.nimh.nih.gov/",
             "description": "Standard format for storing neuroimaging data."
+          }
+        ]
+      },
+      "software": {
+        "name": "Software Tools",
+        "resources": [
+          {
+            "id": "freesurfer",
+            "name": "FreeSurfer",
+            "url": "https://surfer.nmr.mgh.harvard.edu/",
+            "description": "Software suite for processing and analyzing brain MRI images."
+          },
+          {
+            "id": "fsl",
+            "name": "FSL",
+            "url": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki",
+            "description": "Library of analysis tools for brain imaging data."
+          },
+          {
+            "id": "spm",
+            "name": "SPM",
+            "url": "https://www.fil.ion.ucl.ac.uk/spm/",
+            "description": "Statistical Parametric Mapping software."
+          },
+          {
+            "id": "afni",
+            "name": "AFNI",
+            "url": "https://afni.nimh.nih.gov/",
+            "description": "Analysis of Functional NeuroImages software."
           }
         ]
       }
@@ -388,6 +487,12 @@
             "name": "ISRCTN Registry",
             "url": "https://www.isrctn.com/",
             "description": "Primary clinical trial registry."
+          },
+          {
+            "id": "alz-trials",
+            "name": "Alzheimer's Disease Clinical Trials Database",
+            "url": "https://www.alz.org/alzheimers-dementia/research_progress/clinical-trials",
+            "description": "Alzheimer's Association's database of clinical trials."
           }
         ]
       },
@@ -411,6 +516,52 @@
             "name": "Dominantly Inherited Alzheimer Network (DIAN)",
             "url": "https://dian.wustl.edu/",
             "description": "International research partnership studying dominantly inherited Alzheimer's disease."
+          }
+        ]
+      },
+      "guidelines": {
+        "name": "Guidelines & Standards",
+        "resources": [
+          {
+            "id": "fda-guidance",
+            "name": "FDA Guidance for Alzheimer's Disease Drug Development",
+            "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/alzheimers-disease-developing-drugs-treatment-guidance-industry",
+            "description": "Regulatory guidance for Alzheimer's drug development."
+          },
+          {
+            "id": "ema-guidelines",
+            "name": "EMA Guidelines on Alzheimer's Disease",
+            "url": "https://www.ema.europa.eu/en/clinical-investigation-medicines-treatment-alzheimers-disease",
+            "description": "European regulatory guidelines."
+          },
+          {
+            "id": "ichom",
+            "name": "ICHOM Standard Set for Dementia",
+            "url": "https://www.ichom.org/portfolio/dementia/",
+            "description": "Standardized outcome measures for dementia."
+          }
+        ]
+      },
+      "ongoing-trials": {
+        "name": "Ongoing Major Trials",
+        "resources": [
+          {
+            "id": "a4-study",
+            "name": "A4 Study (Anti-Amyloid Treatment in Asymptomatic Alzheimer's Disease)",
+            "url": "https://a4study.org/",
+            "description": "Testing anti-amyloid treatment in asymptomatic individuals."
+          },
+          {
+            "id": "dian-tu",
+            "name": "DIAN-TU (Dominantly Inherited Alzheimer Network Trials Unit)",
+            "url": "https://dian.wustl.edu/our-research/clinical-trials/",
+            "description": "Clinical trials in autosomal dominant Alzheimer's disease."
+          },
+          {
+            "id": "api",
+            "name": "API (Alzheimer's Prevention Initiative)",
+            "url": "https://www.bannerhealth.com/research/clinical-trials/alzheimers-prevention-initiative",
+            "description": "Evaluating treatments to prevent Alzheimer's disease."
           }
         ]
       }
@@ -440,6 +591,12 @@
             "name": "Alzforum Research Models",
             "url": "https://www.alzforum.org/research-models",
             "description": "Database of Alzheimer's disease research models."
+          },
+          {
+            "id": "charles-river",
+            "name": "Charles River Laboratories",
+            "url": "https://www.criver.com/products-services/find-model",
+            "description": "Provider of research models."
           }
         ]
       },
@@ -457,6 +614,18 @@
             "name": "NYSCF Stem Cell Repository",
             "url": "https://nyscf.org/research-institute/stem-cell-repository/",
             "description": "Repository of stem cell lines for disease research."
+          },
+          {
+            "id": "allen-cell",
+            "name": "Allen Cell Types Database",
+            "url": "https://celltypes.brain-map.org/",
+            "description": "Multimodal characterization of cell types in the brain."
+          },
+          {
+            "id": "3d-brain",
+            "name": "3D Brain Cell Atlas",
+            "url": "https://portal.brain-map.org/atlases-and-data/rnaseq",
+            "description": "Comprehensive RNA-Seq data of brain cells."
           }
         ]
       },
@@ -474,6 +643,23 @@
             "name": "Alzheimer's Disease Model Explorer",
             "url": "https://alzheimers.ebi.ac.uk/",
             "description": "Platform for computational models of Alzheimer's disease mechanisms."
+          }
+        ]
+      },
+      "repositories": {
+        "name": "Model Repositories",
+        "resources": [
+          {
+            "id": "ncrad",
+            "name": "National Cell Repository for Alzheimer's Disease",
+            "url": "https://ncrad.iu.edu/",
+            "description": "Repository for cell lines and DNA samples."
+          },
+          {
+            "id": "adni-animal",
+            "name": "Alzheimer's Disease Neuroimaging Initiative (ADNI) Animal Data",
+            "url": "http://adni.loni.usc.edu/",
+            "description": "Preclinical animal imaging data."
           }
         ]
       }
@@ -497,6 +683,30 @@
             "name": "PROMIS",
             "url": "https://www.healthmeasures.net/explore-measurement-systems/promis",
             "description": "Patient-Reported Outcomes Measurement Information System."
+          },
+          {
+            "id": "mmse",
+            "name": "MMSE (Mini-Mental State Examination)",
+            "url": "https://www.parinc.com/Products/Pkey/237",
+            "description": "Brief cognitive assessment tool."
+          },
+          {
+            "id": "moca",
+            "name": "MoCA (Montreal Cognitive Assessment)",
+            "url": "https://www.mocatest.org/",
+            "description": "Cognitive screening test."
+          },
+          {
+            "id": "cdr",
+            "name": "CDR (Clinical Dementia Rating)",
+            "url": "https://knightadrc.wustl.edu/cdr/cdr.htm",
+            "description": "Scale for staging dementia severity."
+          },
+          {
+            "id": "adas-cog",
+            "name": "ADAS-Cog (Alzheimer's Disease Assessment Scale-Cognitive Subscale)",
+            "url": "https://www.dementia-assessment.com.au/cognitive/ADAS_Packet.pdf",
+            "description": "Cognitive assessment tool."
           }
         ]
       },
@@ -520,6 +730,214 @@
             "name": "STRING",
             "url": "https://string-db.org/",
             "description": "Protein-protein interaction networks database."
+          }
+        ]
+      },
+      "digital": {
+        "name": "Digital Tools",
+        "resources": [
+          {
+            "id": "digital-cognitive",
+            "name": "Digital Cognitive Assessment Tools",
+            "url": "https://www.cambridgecognition.com/products",
+            "description": "Computerized cognitive testing."
+          },
+          {
+            "id": "brain-health",
+            "name": "Brain Health Registry",
+            "url": "https://www.brainhealthregistry.org/",
+            "description": "Online registry for brain health research."
+          },
+          {
+            "id": "c2n",
+            "name": "C2N Diagnostics",
+            "url": "https://c2n.com/",
+            "description": "Blood tests for Alzheimer's disease."
+          },
+          {
+            "id": "cogstate",
+            "name": "Cogstate",
+            "url": "https://www.cogstate.com/",
+            "description": "Digital cognitive assessments."
+          }
+        ]
+      },
+      "biospecimen": {
+        "name": "Biospecimen Collection & Processing",
+        "resources": [
+          {
+            "id": "nia-biospecimen",
+            "name": "NIA Biospecimen Best Practice Guidelines",
+            "url": "https://www.nia.nih.gov/research/resource/nia-biospecimen-best-practice-guidelines",
+            "description": "Guidelines for biospecimen collection and processing."
+          },
+          {
+            "id": "adni-biospecimen",
+            "name": "Alzheimer's Disease Biospecimen Collection Protocol",
+            "url": "https://adni.loni.usc.edu/methods/documents/",
+            "description": "Standardized protocols for biospecimen collection."
+          }
+        ]
+      }
+    }
+  },
+  "funding": {
+    "id": "funding",
+    "name": "Funding Opportunities",
+    "subcategories": {
+      "government": {
+        "name": "Government Funding",
+        "resources": [
+          {
+            "id": "nih-funding",
+            "name": "NIH Funding Opportunities",
+            "url": "https://grants.nih.gov/funding/index.htm",
+            "description": "US federal funding for research."
+          },
+          {
+            "id": "nia-adc",
+            "name": "NIA Alzheimer's Disease Research Centers",
+            "url": "https://www.nia.nih.gov/research/adc",
+            "description": "Network of centers providing funding and resources."
+          },
+          {
+            "id": "horizon-europe",
+            "name": "European Commission Horizon Europe",
+            "url": "https://ec.europa.eu/info/horizon-europe_en",
+            "description": "EU research and innovation funding program."
+          },
+          {
+            "id": "ukri",
+            "name": "UK Research and Innovation (UKRI)",
+            "url": "https://www.ukri.org/",
+            "description": "UK's main research funding body."
+          }
+        ]
+      },
+      "nonprofit": {
+        "name": "Non-Profit Funding",
+        "resources": [
+          {
+            "id": "alz-grants",
+            "name": "Alzheimer's Association Research Grants",
+            "url": "https://www.alz.org/research/for_researchers/grants",
+            "description": "Various funding opportunities."
+          },
+          {
+            "id": "brightfocus",
+            "name": "BrightFocus Foundation",
+            "url": "https://www.brightfocus.org/grants",
+            "description": "Funding for Alzheimer's disease research."
+          },
+          {
+            "id": "cure-alz-grants",
+            "name": "Cure Alzheimer's Fund Research Grants",
+            "url": "https://curealz.org/research/for-researchers/",
+            "description": "Funding for breakthrough research."
+          }
+        ]
+      },
+      "industry": {
+        "name": "Industry Funding & Partnerships",
+        "resources": [
+          {
+            "id": "addf",
+            "name": "Alzheimer's Drug Discovery Foundation (ADDF)",
+            "url": "https://www.alzdiscovery.org/research-and-grants",
+            "description": "Funding for drug discovery and development."
+          },
+          {
+            "id": "gates",
+            "name": "Gates Ventures",
+            "url": "https://www.gatesfoundation.org/",
+            "description": "Funding from the Bill & Melinda Gates Foundation."
+          },
+          {
+            "id": "phrma",
+            "name": "Pharmaceutical Research and Manufacturers of America (PhRMA)",
+            "url": "https://www.phrma.org/en/Science/Research-and-Development",
+            "description": "Industry funding opportunities."
+          }
+        ]
+      }
+    }
+  },
+  "publications": {
+    "id": "publications",
+    "name": "Publications & Journals",
+    "subcategories": {
+      "journals": {
+        "name": "Major Journals",
+        "resources": [
+          {
+            "id": "alz-dementia",
+            "name": "Alzheimer's & Dementia",
+            "url": "https://alz-journals.onlinelibrary.wiley.com/journal/15525279",
+            "description": "Official journal of the Alzheimer's Association."
+          },
+          {
+            "id": "jad",
+            "name": "Journal of Alzheimer's Disease",
+            "url": "https://www.j-alz.com/",
+            "description": "International multidisciplinary journal."
+          },
+          {
+            "id": "neurobiology-aging",
+            "name": "Neurobiology of Aging",
+            "url": "https://www.journals.elsevier.com/neurobiology-of-aging",
+            "description": "Fundamental age-related research."
+          },
+          {
+            "id": "alz-research-therapy",
+            "name": "Alzheimer's Research & Therapy",
+            "url": "https://alzres.biomedcentral.com/",
+            "description": "Open access journal for Alzheimer's research."
+          },
+          {
+            "id": "nature-neurology",
+            "name": "Nature Reviews Neurology",
+            "url": "https://www.nature.com/nrneurol/",
+            "description": "Reviews on neurological diseases."
+          },
+          {
+            "id": "jama-neurology",
+            "name": "JAMA Neurology",
+            "url": "https://jamanetwork.com/journals/jamaneurology",
+            "description": "Peer-reviewed medical journal on neurology."
+          }
+        ]
+      },
+      "preprints": {
+        "name": "Preprint Servers",
+        "resources": [
+          {
+            "id": "biorxiv",
+            "name": "bioRxiv",
+            "url": "https://www.biorxiv.org/",
+            "description": "Preprint server for biology."
+          },
+          {
+            "id": "medrxiv",
+            "name": "medRxiv",
+            "url": "https://www.medrxiv.org/",
+            "description": "Preprint server for health sciences."
+          }
+        ]
+      },
+      "reviews": {
+        "name": "Meta-Analysis & Systematic Reviews",
+        "resources": [
+          {
+            "id": "cochrane",
+            "name": "Cochrane Database of Systematic Reviews",
+            "url": "https://www.cochranelibrary.com/",
+            "description": "Systematic reviews of healthcare interventions."
+          },
+          {
+            "id": "prospero",
+            "name": "PROSPERO",
+            "url": "https://www.crd.york.ac.uk/prospero/",
+            "description": "International prospective register of systematic reviews."
           }
         ]
       }
@@ -549,6 +967,18 @@
             "name": "Coursera Neuroscience Courses",
             "url": "https://www.coursera.org/courses?query=neuroscience",
             "description": "Online courses on neuroscience topics."
+          },
+          {
+            "id": "edx-neurosci",
+            "name": "edX Neuroscience Courses",
+            "url": "https://www.edx.org/learn/neuroscience",
+            "description": "Free online courses from top universities."
+          },
+          {
+            "id": "alz-trialmatch",
+            "name": "Alzheimer's Association TrialMatch",
+            "url": "https://www.alz.org/alzheimers-dementia/research_progress/clinical-trials/about-clinical-trials",
+            "description": "Educational resources about clinical trials."
           }
         ]
       },
@@ -566,6 +996,330 @@
             "name": "Digital Alzheimer's Pathology Resource",
             "url": "https://alzpath.org/",
             "description": "Digital resource for Alzheimer's disease pathology."
+          }
+        ]
+      },
+      "conferences": {
+        "name": "Conferences & Meetings",
+        "resources": [
+          {
+            "id": "aaic",
+            "name": "AAIC (Alzheimer's Association International Conference)",
+            "url": "https://www.alz.org/aaic/",
+            "description": "Annual conference on Alzheimer's research."
+          },
+          {
+            "id": "ctad",
+            "name": "CTAD (Clinical Trials on Alzheimer's Disease)",
+            "url": "https://www.ctad-alzheimer.com/",
+            "description": "Conference focused on clinical trials."
+          },
+          {
+            "id": "adpd",
+            "name": "ADPD (Alzheimer's & Parkinson's Diseases Conference)",
+            "url": "https://adpd.kenes.com/",
+            "description": "Conference on neurodegenerative diseases."
+          },
+          {
+            "id": "sfn",
+            "name": "Society for Neuroscience Annual Meeting",
+            "url": "https://www.sfn.org/meetings/neuroscience-2023",
+            "description": "Large neuroscience conference."
+          }
+        ]
+      },
+      "training": {
+        "name": "Professional Training",
+        "resources": [
+          {
+            "id": "nia-training-prog",
+            "name": "NIA Training Programs",
+            "url": "https://www.nia.nih.gov/research/training",
+            "description": "Career development and training opportunities."
+          },
+          {
+            "id": "alz-fellowships",
+            "name": "Alzheimer's Association Research Fellowships",
+            "url": "https://www.alz.org/research/for_researchers/fellowships",
+            "description": "Research training fellowships."
+          },
+          {
+            "id": "ageuk",
+            "name": "AgeUK Dementia Training",
+            "url": "https://www.ageuk.org.uk/services/training/",
+            "description": "Training for healthcare professionals."
+          }
+        ]
+      }
+    }
+  },
+  "software": {
+    "id": "software",
+    "name": "Software & Computational Tools",
+    "subcategories": {
+      "data-analysis": {
+        "name": "Data Analysis Tools",
+        "resources": [
+          {
+            "id": "r-stats",
+            "name": "R Statistical Software",
+            "url": "https://www.r-project.org/",
+            "description": "Free software for statistical computing."
+          },
+          {
+            "id": "pandas",
+            "name": "Python with Pandas",
+            "url": "https://pandas.pydata.org/",
+            "description": "Data analysis library for Python."
+          },
+          {
+            "id": "matlab",
+            "name": "MATLAB",
+            "url": "https://www.mathworks.com/products/matlab.html",
+            "description": "Platform for numerical computation and visualization."
+          },
+          {
+            "id": "graphpad",
+            "name": "GraphPad Prism",
+            "url": "https://www.graphpad.com/scientific-software/prism/",
+            "description": "Statistical analysis and graphing software."
+          }
+        ]
+      },
+      "bioinformatics": {
+        "name": "Bioinformatics Tools",
+        "resources": [
+          {
+            "id": "bioconductor",
+            "name": "Bioconductor",
+            "url": "https://www.bioconductor.org/",
+            "description": "Open source software for bioinformatics."
+          },
+          {
+            "id": "galaxy",
+            "name": "Galaxy",
+            "url": "https://usegalaxy.org/",
+            "description": "Web-based platform for data intensive biomedical research."
+          },
+          {
+            "id": "cytoscape",
+            "name": "CytoScape",
+            "url": "https://cytoscape.org/",
+            "description": "Open source software for visualizing molecular interaction networks."
+          },
+          {
+            "id": "rstudio",
+            "name": "RStudio",
+            "url": "https://www.rstudio.com/",
+            "description": "Integrated development environment for R."
+          }
+        ]
+      },
+      "ai-ml": {
+        "name": "AI & Machine Learning",
+        "resources": [
+          {
+            "id": "tensorflow",
+            "name": "TensorFlow",
+            "url": "https://www.tensorflow.org/",
+            "description": "Open source machine learning framework."
+          },
+          {
+            "id": "pytorch",
+            "name": "PyTorch",
+            "url": "https://pytorch.org/",
+            "description": "Machine learning library."
+          },
+          {
+            "id": "scikit-learn",
+            "name": "scikit-learn",
+            "url": "https://scikit-learn.org/stable/",
+            "description": "Machine learning in Python."
+          },
+          {
+            "id": "keras",
+            "name": "Keras",
+            "url": "https://keras.io/",
+            "description": "Deep learning API."
+          }
+        ]
+      },
+      "database-management": {
+        "name": "Database Management",
+        "resources": [
+          {
+            "id": "redcap",
+            "name": "REDCap",
+            "url": "https://www.project-redcap.org/",
+            "description": "Secure web application for building and managing databases."
+          },
+          {
+            "id": "mongodb",
+            "name": "MongoDB",
+            "url": "https://www.mongodb.com/",
+            "description": "NoSQL database program."
+          },
+          {
+            "id": "postgresql",
+            "name": "PostgreSQL",
+            "url": "https://www.postgresql.org/",
+            "description": "Advanced open source database."
+          }
+        ]
+      }
+    }
+  },
+  "patient-data": {
+    "id": "patient-data",
+    "name": "Patient Data & Cohorts",
+    "subcategories": {
+      "longitudinal": {
+        "name": "Longitudinal Studies",
+        "resources": [
+          {
+            "id": "rosmap",
+            "name": "Religious Orders Study and Rush Memory and Aging Project (ROSMAP)",
+            "url": "https://www.radc.rush.edu/",
+            "description": "Two longitudinal clinical-pathologic cohort studies."
+          },
+          {
+            "id": "harvard-aging",
+            "name": "Harvard Aging Brain Study",
+            "url": "https://www.nmr.mgh.harvard.edu/lab/harvardagingbrain",
+            "description": "Longitudinal study of aging and Alzheimer's disease."
+          },
+          {
+            "id": "mayo-aging",
+            "name": "Mayo Clinic Study of Aging",
+            "url": "https://www.mayo.edu/research/centers-programs/alzheimers-disease-research-center/research-activities/mayo-clinic-study-aging",
+            "description": "Population-based study of cognitive aging."
+          },
+          {
+            "id": "blsa",
+            "name": "Baltimore Longitudinal Study of Aging (BLSA)",
+            "url": "https://www.blsa.nih.gov/",
+            "description": "America's longest-running scientific study of human aging."
+          }
+        ]
+      },
+      "diverse": {
+        "name": "Diverse Populations",
+        "resources": [
+          {
+            "id": "mars",
+            "name": "Minority Aging Research Study (MARS)",
+            "url": "https://www.rushu.rush.edu/research/departmental-research/internal-medicine-research/minority-aging-research-study",
+            "description": "Study focusing on African American cognitive aging."
+          },
+          {
+            "id": "whicap",
+            "name": "Washington Heights-Inwood Columbia Aging Project (WHICAP)",
+            "url": "https://www.cuimc.columbia.edu/research/programs/washington-heights-inwood-community-aging-project",
+            "description": "Multiethnic community study."
+          },
+          {
+            "id": "hrs",
+            "name": "Health and Retirement Study (HRS)",
+            "url": "https://hrs.isr.umich.edu/",
+            "description": "Panel study of older Americans."
+          }
+        ]
+      },
+      "biobanks": {
+        "name": "Biobanks",
+        "resources": [
+          {
+            "id": "uk-biobank",
+            "name": "UK Biobank",
+            "url": "https://www.ukbiobank.ac.uk/",
+            "description": "Large-scale biomedical database and research resource."
+          },
+          {
+            "id": "neurobiobank",
+            "name": "NIH NeuroBioBank",
+            "url": "https://neurobiobank.nih.gov/",
+            "description": "Federally funded network of brain and tissue repositories."
+          },
+          {
+            "id": "brainnet",
+            "name": "BrainNet Europe",
+            "url": "http://www.brainnet-europe.org/",
+            "description": "Network of European brain banks."
+          }
+        ]
+      }
+    }
+  },
+  "open-science": {
+    "id": "open-science",
+    "name": "Open Science Resources",
+    "subcategories": {
+      "repositories": {
+        "name": "Open Access Repositories",
+        "resources": [
+          {
+            "id": "pubmed",
+            "name": "PubMed Central",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/",
+            "description": "Archive of biomedical and life sciences journal literature."
+          },
+          {
+            "id": "europe-pmc",
+            "name": "Europe PMC",
+            "url": "https://europepmc.org/",
+            "description": "Repository of life science articles and preprints."
+          },
+          {
+            "id": "zenodo",
+            "name": "Zenodo",
+            "url": "https://zenodo.org/",
+            "description": "Open access repository for research papers, data, and software."
+          }
+        ]
+      },
+      "collaboration": {
+        "name": "Collaboration Platforms",
+        "resources": [
+          {
+            "id": "osf",
+            "name": "Open Science Framework",
+            "url": "https://osf.io/",
+            "description": "Platform for research project management and collaboration."
+          },
+          {
+            "id": "github",
+            "name": "GitHub",
+            "url": "https://github.com/",
+            "description": "Platform for software development and sharing."
+          },
+          {
+            "id": "synapse",
+            "name": "Sage Bionetworks Synapse",
+            "url": "https://www.synapse.org/",
+            "description": "Platform for data-driven collaborative research."
+          }
+        ]
+      },
+      "data-sharing": {
+        "name": "Data Sharing Initiatives",
+        "resources": [
+          {
+            "id": "amp-ad",
+            "name": "AMP-AD Knowledge Portal",
+            "url": "https://adknowledgeportal.synapse.org/",
+            "description": "Portal for the Accelerating Medicines Partnership."
+          },
+          {
+            "id": "gaain",
+            "name": "GAAIN (Global Alzheimer's Association Interactive Network)",
+            "url": "https://www.gaain.org/",
+            "description": "Global big data platform for Alzheimer's disease."
+          },
+          {
+            "id": "addi-workbench",
+            "name": "ADDI Workbench",
+            "url": "https://www.alzheimersdata.org/",
+            "description": "Integrated data sharing platform."
           }
         ]
       }
