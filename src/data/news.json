@@ -1,0 +1,75 @@
+{
+  "id": "news",
+  "name": "News, Blogs & Updates",
+  "subcategories": {
+    "articles": {
+      "name": "News Articles",
+      "resources": [
+        {
+          "id": "alzforum-news",
+          "name": "Alzforum News",
+          "url": "https://www.alzforum.org/all-news",
+          "description": "Latest news and updates on Alzheimer's disease research and therapies."
+        },
+        {
+          "id": "nia-news",
+          "name": "National Institute on Aging News",
+          "url": "https://www.nia.nih.gov/news",
+          "description": "News releases and updates on aging and Alzheimer's research from the NIA."
+        },
+        {
+          "id": "nature-neuro-news",
+          "name": "Nature Neuroscience News",
+          "url": "https://www.nature.com/neuro/news-and-comment",
+          "description": "News and commentary on neuroscience, including Alzheimer's research."
+        }
+      ]
+    },
+    "blogs": {
+      "name": "Blog Posts",
+      "resources": [
+        {
+          "id": "alz-assoc-blog",
+          "name": "Alzheimer's Association Blog",
+          "url": "https://www.alz.org/blog",
+          "description": "Blog posts covering Alzheimer's research, care, and advocacy."
+        },
+        {
+          "id": "alz-research-uk-blog",
+          "name": "Alzheimer's Research UK Blog",
+          "url": "https://www.alzheimersresearchuk.org/about-us/latest/news/",
+          "description": "Insights and updates from the UK's leading dementia research charity."
+        },
+        {
+          "id": "being-patient",
+          "name": "Being Patient Alzheimer's Blog",
+          "url": "https://www.beingpatient.com/",
+          "description": "Patient-focused blog with news and stories about Alzheimer's disease."
+        }
+      ]
+    },
+    "updates": {
+      "name": "Research Updates",
+      "resources": [
+        {
+          "id": "nih-alz-updates",
+          "name": "NIH Alzheimer's Research Updates",
+          "url": "https://www.nia.nih.gov/news",
+          "description": "Regular updates on Alzheimer's research progress from the NIH."
+        },
+        {
+          "id": "cure-alz-updates",
+          "name": "Cure Alzheimer's Fund Research Updates",
+          "url": "https://curealz.org/news-and-events/",
+          "description": "Updates on funded research projects targeting Alzheimer's breakthroughs."
+        },
+        {
+          "id": "ad-knowledge-updates",
+          "name": "AMP-AD Knowledge Portal Updates",
+          "url": "https://adknowledgeportal.synapse.org/#/Explore/News",
+          "description": "News and updates from the Accelerating Medicines Partnership for Alzheimer's."
+        }
+      ]
+    }
+  }
+}

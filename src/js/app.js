@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const modal = document.getElementById("edit-modal");
   const modalClose = document.querySelector(".modal .close");
   const editButton = document.getElementById("edit-button");
+  const newsContent = document.getElementById("news-content");
 
   let resourceDatabase = {};
 
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   try {
-      const response = await fetch("./js/resources.json");
+      const response = await fetch("./src/data/resources.json");
       if (!response.ok) throw new Error("Network response was not ok");
       resourceDatabase = await response.json();
       loadCategories();
@@ -34,6 +35,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           '<li class="menu-item error">Failed to load categories. Please try again later.</li>';
       contentArea.innerHTML =
           '<div class="error-message"><p>Error loading resources. Please refresh the page or try again later.</p></div>';
+  }
+
+  try {
+      const response = await fetch("./src/data/news.json");
+      if (!response.ok) throw new Error("Network response was not ok");
+      newsDatabase = await response.json();
+      loadNews();
+  } catch (error) {
+      console.error("Error loading news:", error);
+      newsContent.innerHTML = '<p>Error loading news. Please try again later.</p>';
   }
 
   function initializeCategoryDropdown() {
@@ -145,6 +156,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
   }
 
+  function loadNews() {
+      newsContent.innerHTML = "";
+      Object.values(newsDatabase.subcategories).forEach(subcategory => {
+          const subcatDiv = document.createElement("div");
+          subcatDiv.innerHTML = `<h4 class="subcategory-title">${subcategory.name}</h4>`;
+          subcategory.resources.forEach(resource => {
+              const itemDiv = document.createElement("div");
+              itemDiv.className = "news-item";
+              itemDiv.innerHTML = `
+                  <h5><a href="${resource.url}" target="_blank" rel="noopener">${resource.name}</a></h5>
+                  <p>${resource.description}</p>
+              `;
+              subcatDiv.appendChild(itemDiv);
+          });
+          newsContent.appendChild(subcatDiv);
+      });
+  }
   // load resources for a category + subcategory
   function loadResources(categoryKey, subKey) {
       contentArea.innerHTML =
@@ -326,7 +354,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           modal.style.display = "none";
           resourceForm.reset();
 
-          const refreshResponse = await fetch("./js/resources.json");
+          const refreshResponse = await fetch("./src/data/resources.json");
           resourceDatabase = await refreshResponse.json();
           loadCategories();
 
