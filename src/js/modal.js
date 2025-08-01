@@ -37,9 +37,57 @@ const modalHTML = `
             <input type="hidden" id="resource-id" value="">
             <button type="submit" class="form-submit">Save Resource</button>
         </form>
-        
     </div>
 </div>
 `;
 
 document.body.insertAdjacentHTML('beforeend', modalHTML);
+// Proxy endpoint — replace with your real server URL when deployed
+const proxyEndpoint = 'https://your-proxy-server.com/submit-issue';
+
+document.getElementById("resource-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const category = document.getElementById("resource-category").value;
+    const subcategory = document.getElementById("resource-subcategory").value;
+    const otherSub = document.getElementById("other-subcategory").value;
+    const name = document.getElementById("resource-name").value;
+    const url = document.getElementById("resource-url").value;
+    const description = document.getElementById("resource-description").value;
+
+    const finalSubcategory = subcategory === "Other" ? otherSub : subcategory;
+
+    const issueTitle = `New Resource: ${name}`;
+    const issueBody = `
+**Name**: ${name}
+**URL**: ${url}
+**Description**: ${description}
+**Category**: ${category}
+**Subcategory**: ${finalSubcategory}
+`;
+
+    const payload = {
+        title: issueTitle,
+        body: issueBody,
+        labels: ['new-resource']
+    };
+
+    try {
+        const response = await fetch(proxyEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("✅ Resource submitted for review! View it: " + result.issue_url);
+        } else {
+            alert("⚠️ Submission failed: " + result.error);
+        }
+    } catch (error) {
+        console.error("Error submitting resource:", error);
+        alert("🚫 Submission error. Try again later.");
+    }
+});
