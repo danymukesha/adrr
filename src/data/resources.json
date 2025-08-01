@@ -711,9 +711,14 @@
         ]
       },
       "bioinformatics": {
-        "name": "Bioinformatics Tools",
+        "name": "Software & Computational Tools",
         "resources": [
           {
+            "id": "software",
+            "name": "Software",
+            "url": "https://adknowledgeportal.synapse.org/Explore/Computational%20Tools",
+            "description": "A collection of software tools for Alzheimer's research."
+          },{
             "id": "rnaseq",
             "name": "RNA-Seq Tools for AD",
             "url": "https://www.synapse.org/#!Synapse:syn2580853/wiki/409844",
