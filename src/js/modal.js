@@ -37,6 +37,7 @@ const modalHTML = `
             <input type="hidden" id="resource-id" value="">
             <button type="submit" class="form-submit">Save Resource</button>
         </form>
+        
     </div>
 </div>
 `;
