@@ -257,7 +257,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (!response.ok) throw new Error("Failed to save resource");
 
-      alert(resourceId ? "Resource updated successfully!" : "Resource submitted successfully!");
+      alert(resourceId ? "Resource updated successfully!" : "Resource submitted successfully! \
+        \nNow the team will review it add publish it to the site later.\
+        \n\nIf you have any questions, please contact us at: \
+        \ndanymukesha@gmail.com \
+        \n\nThank you for your contribution!");
       resetModalForm();
 
       const refreshResponse = await fetch("./src/data/resources.json");
