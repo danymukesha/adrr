@@ -4,386 +4,294 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchInput = document.querySelector(".search-input");
   const resourceForm = document.getElementById("resource-form");
   const resourceCategorySelect = document.getElementById("resource-category");
-  const otherCategoryInput = document.getElementById("other-category");
-  const resourceSubcategorySelect = document.getElementById("resource-subcategory");
   const otherSubcategoryInput = document.getElementById("other-subcategory");
+  const resourceSubcategorySelect = document.getElementById("resource-subcategory");
   const modal = document.getElementById("edit-modal");
   const modalClose = document.querySelector(".modal .close");
   const editButton = document.getElementById("edit-button");
   const newsContent = document.getElementById("news-content");
 
   let resourceDatabase = {};
+  let newsDatabase = {};
 
-  // initialize category dropdown and subcategory handling
-  resourceCategorySelect.addEventListener("change", function() {
-      updateSubcategoryOptions(this.value);
+  resourceCategorySelect.addEventListener("change", function () {
+    updateSubcategoryOptions(this.value);
   });
 
-  resourceSubcategorySelect.addEventListener("change", function() {
-      toggleOtherSubcategoryInput(this.value);
+  resourceSubcategorySelect.addEventListener("change", function () {
+    toggleOtherSubcategoryInput(this.value);
   });
 
   try {
-      const response = await fetch("./src/data/resources.json");
-      if (!response.ok) throw new Error("Network response was not ok");
-      resourceDatabase = await response.json();
-      loadCategories();
-      initializeCategoryDropdown();
+    const res = await fetch("./src/data/resources.json");
+    if (!res.ok) throw new Error("Failed to load resources.");
+    resourceDatabase = await res.json();
+    loadCategories();
+    initializeCategoryDropdown();
   } catch (error) {
-      console.error("Error loading resources:", error);
-      categoriesMenu.innerHTML =
-          '<li class="menu-item error">Failed to load categories. Please try again later.</li>';
-      contentArea.innerHTML =
-          '<div class="error-message"><p>Error loading resources. Please refresh the page or try again later.</p></div>';
+    console.error("Error loading resources:", error);
+    categoriesMenu.innerHTML = '<li class="menu-item error">Failed to load categories.</li>';
+    contentArea.innerHTML = '<div class="error-message"><p>Error loading resources.</p></div>';
   }
 
   try {
-      const response = await fetch("./src/data/news.json");
-      if (!response.ok) throw new Error("Network response was not ok");
-      newsDatabase = await response.json();
-      loadNews();
+    const res = await fetch("./src/data/news.json");
+    if (!res.ok) throw new Error("Failed to load news.");
+    newsDatabase = await res.json();
+    loadNews();
   } catch (error) {
-      console.error("Error loading news:", error);
-      newsContent.innerHTML = '<p>Error loading news. Please try again later.</p>';
+    console.error("Error loading news:", error);
+    newsContent.innerHTML = '<p>Error loading news. Please try again later.</p>';
   }
 
   function initializeCategoryDropdown() {
-      resourceCategorySelect.innerHTML = '<option value="">Select a category</option>';
-      Object.entries(resourceDatabase).forEach(([key, category]) => {
-          const option = new Option(category.name, key);
-          resourceCategorySelect.appendChild(option);
-      });
+    resourceCategorySelect.innerHTML = '<option value="">Select a category</option>';
+    Object.entries(resourceDatabase).forEach(([key, category]) => {
+      resourceCategorySelect.appendChild(new Option(category.name, key));
+    });
   }
 
   function updateSubcategoryOptions(selectedCategory) {
-      resourceSubcategorySelect.innerHTML = '<option value="">Select subcategory</option>';
-      otherSubcategoryInput.parentElement.style.display = "none";
-      otherSubcategoryInput.required = false;
+    resourceSubcategorySelect.innerHTML = '<option value="">Select subcategory</option>';
+    otherSubcategoryInput.parentElement.style.display = "none";
+    otherSubcategoryInput.required = false;
 
-      if (selectedCategory && resourceDatabase[selectedCategory]?.subcategories) {
-          const subcategories = resourceDatabase[selectedCategory].subcategories;
-
-          // the addition of existing subcategories with a prior check
-          Object.entries(subcategories).forEach(([subKey, sub]) => {
-              const option = new Option(sub.name, subKey);
-              resourceSubcategorySelect.appendChild(option);
-          });
-	
-  	  // add "Other" option, if subcategory doesn't exist.
-          const otherOption = new Option("Other (specify below)", "other");
-          resourceSubcategorySelect.appendChild(otherOption);
-      }
+    if (selectedCategory && resourceDatabase[selectedCategory]?.subcategories) {
+      const subcategories = resourceDatabase[selectedCategory].subcategories;
+      Object.entries(subcategories).forEach(([subKey, sub]) => {
+        resourceSubcategorySelect.appendChild(new Option(sub.name, subKey));
+      });
+      resourceSubcategorySelect.appendChild(new Option("Other (specify below)", "other"));
+    }
   }
 
   function toggleOtherSubcategoryInput(selectedValue) {
-      const otherContainer = otherSubcategoryInput.parentElement;
-      if (selectedValue === "other") {
-          otherContainer.style.display = "block";
-          otherSubcategoryInput.required = true;
-      } else {
-          otherContainer.style.display = "none";
-          otherSubcategoryInput.required = false;
-      }
+  const otherContainer = otherSubcategoryInput.parentElement;
+  if (selectedValue === "other") {
+    otherContainer.style.display = "block";
+    otherSubcategoryInput.required = true;
+  } else {
+    otherContainer.style.display = "none";
+    otherSubcategoryInput.required = false;
   }
+}
+
 
   function loadCategories() {
-      categoriesMenu.innerHTML = ""; // just here I am clearing the loading message
+    categoriesMenu.innerHTML = "";
+    Object.entries(resourceDatabase).forEach(([categoryKey, category]) => {
+      const categoryItem = document.createElement("li");
+      categoryItem.className = "menu-item category-item";
+      categoryItem.innerHTML = `<a href="#" class="category-link" data-category="${categoryKey}">${category.name}</a>`;
 
-      for (let categoryKey in resourceDatabase) {
-          const category = resourceDatabase[categoryKey];
+      if (category.subcategories) {
+        const subList = document.createElement("ul");
+        subList.className = "subcategory-list";
 
-          const categoryItem = document.createElement("li");
-          categoryItem.className = "menu-item category-item";
-          categoryItem.innerHTML = `<a href="#" class="category-link" data-category="${categoryKey}">${category.name}</a>`;
+        Object.entries(category.subcategories).forEach(([subKey, sub]) => {
+          const subItem = document.createElement("li");
+          subItem.className = "subcategory-item";
+          subItem.innerHTML = `<a href="#" data-category="${categoryKey}" data-subcategory="${subKey}">${sub.name}</a>`;
+          subItem.querySelector("a").addEventListener("click", (e) => {
+            e.preventDefault();
+            loadResources(categoryKey, subKey);
+          });
+          subList.appendChild(subItem);
+        });
 
-          if (
-              category.subcategories &&
-              Object.keys(category.subcategories).length > 0
-          ) {
-              const subList = document.createElement("ul");
-              subList.className = "subcategory-list";
+        categoryItem.appendChild(subList);
+        categoryItem.addEventListener("mouseover", () => subList.style.display = "block");
+        categoryItem.addEventListener("mouseout", () => subList.style.display = "none");
 
-              for (let subKey in category.subcategories) {
-                  const sub = category.subcategories[subKey];
-                  const subItem = document.createElement("li");
-                  subItem.className = "subcategory-item";
-                  subItem.innerHTML = `<a href="#" data-category="${categoryKey}" data-subcategory="${subKey}">${sub.name}</a>`;
-                  subItem.querySelector("a").addEventListener("click", (e) => {
-                      e.preventDefault();
-                      loadResources(categoryKey, subKey);
-                  });
-                  subList.appendChild(subItem);
-              }
-
-              categoryItem.appendChild(subList);
-
-              // i add here click event to category link
-              categoryItem.appendChild(subList);
-
-              categoryItem.addEventListener("mouseover", () => {
-                  subList.style.display = "block";
-              });
-
-              categoryItem.addEventListener("mouseout", () => {
-                  subList.style.display = "none";
-              });
-
-              categoryItem
-                  .querySelector(".category-link")
-                  .addEventListener("click", (e) => {
-                      e.preventDefault();
-                      const firstSubKey = Object.keys(category.subcategories)[0];
-                      loadResources(categoryKey, firstSubKey);
-                  });
-          }
-
-          categoriesMenu.appendChild(categoryItem);
-
-          // add to form select
-          const option = document.createElement("option");
-          option.value = categoryKey;
-          option.textContent = category.name;
-          resourceCategorySelect.appendChild(option);
+        categoryItem.querySelector(".category-link").addEventListener("click", (e) => {
+          e.preventDefault();
+          const firstSubKey = Object.keys(category.subcategories)[0];
+          loadResources(categoryKey, firstSubKey);
+        });
       }
 
-      // loading first category by default if available
-      const firstCategory = Object.keys(resourceDatabase)[0];
-      if (firstCategory) {
-          const firstSub = Object.keys(
-              resourceDatabase[firstCategory].subcategories
-          )[0];
-          loadResources(firstCategory, firstSub);
+      categoriesMenu.appendChild(categoryItem);
+    });
+
+    const firstCategory = Object.keys(resourceDatabase)[0];
+    if (firstCategory) {
+      const firstSub = Object.keys(resourceDatabase[firstCategory].subcategories)[0];
+      loadResources(firstCategory, firstSub);
+    }
+  }
+
+  function loadResources(categoryKey, subKey) {
+    contentArea.innerHTML = '<div class="loading"><p>Loading resources...</p></div>';
+    setTimeout(() => {
+      try {
+        const category = resourceDatabase[categoryKey];
+        const sub = category.subcategories[subKey];
+        let html = `<h2>${category.name} / ${sub.name}</h2><div class="resource-list">`;
+
+        if (sub.resources?.length) {
+          html += sub.resources.map(res => `
+            <div class="resource-card">
+              <h3><a href="${res.url}" target="_blank" rel="noopener noreferrer">${res.name}</a></h3>
+              <p>${res.description}</p>
+              <!-- <button class="edit-resource-btn" data-category="${categoryKey}" data-subcategory="${subKey}" data-index="${sub.resources.indexOf(res)}">
+                <i class="fas fa-edit"></i> Edit
+              </button> -->
+            </div>`).join("");
+        } else {
+          html += '<p>No resources found in this category.</p>';
+        }
+
+        html += "</div>";
+        contentArea.innerHTML = html;
+      } catch (error) {
+        console.error("Error loading resources:", error);
+        contentArea.innerHTML = '<div class="error-message">Error loading resources.</div>';
       }
+    }, 300);
   }
 
   function loadNews() {
-      newsContent.innerHTML = "";
-      Object.values(newsDatabase.subcategories).forEach(subcategory => {
-          const subcatDiv = document.createElement("div");
-          subcatDiv.innerHTML = `<h4 class="subcategory-title">${subcategory.name}</h4>`;
-          subcategory.resources.forEach(resource => {
-              const itemDiv = document.createElement("div");
-              itemDiv.className = "news-item";
-              itemDiv.innerHTML = `
-                  <h5><a href="${resource.url}" target="_blank" rel="noopener">${resource.name}</a></h5>
-                  <p>${resource.description}</p>
-              `;
-              subcatDiv.appendChild(itemDiv);
-          });
-          newsContent.appendChild(subcatDiv);
-      });
-  }
-  // load resources for a category + subcategory
-  function loadResources(categoryKey, subKey) {
-      contentArea.innerHTML =
-          '<div class="loading"><p>Loading resources...</p></div>';
-
-      setTimeout(() => {
-          try {
-              const category = resourceDatabase[categoryKey];
-              const sub = category.subcategories[subKey];
-
-              let contentHTML = `
-                <h2 class="resource-title">${category.name} <span class="divider">/</span> ${sub.name}</h2>
-                <div class="resource-list">
-            `;
-
-              if (sub.resources && sub.resources.length > 0) {
-                  sub.resources.forEach((res) => {
-                      contentHTML += `
-                        <div class="resource-card">
-                            <h3><a href="${
-                              res.url
-                            }" target="_blank" rel="noopener noreferrer">${
-            res.name
-          }</a></h3>
-                            <p class="resource-description">${
-                              res.description
-                            }</p>
-                            ${
-                              res.additionalInfo
-                                ? `<p class="resource-meta">${res.additionalInfo}</p>`
-                                : ""
-                            }
-                        </div>
-                    `;
-                  });
-              } else {
-                  contentHTML +=
-                      '<p class="no-resources">No resources found in this category.</p>';
-              }
-
-              contentHTML += "</div>";
-              contentArea.innerHTML = contentHTML;
-          } catch (error) {
-              console.error("Error loading resources:", error);
-              contentArea.innerHTML =
-                  '<div class="error-message"><p>Error loading resources. Please try again.</p></div>';
-          }
-      }, 300); // small delay for better UX
-  }
-
-  // fetching for functionality
-  searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim().toLowerCase();
-
-      if (query.length < 2) {
-          // reset to default view if search query is too short
-          const firstCategory = Object.keys(resourceDatabase)[0];
-          if (firstCategory) {
-              const firstSub = Object.keys(
-                  resourceDatabase[firstCategory].subcategories
-              )[0];
-              loadResources(firstCategory, firstSub);
-          }
-          return;
-      }
-
-      contentArea.innerHTML =
-          '<div class="loading"><p>Searching resources...</p></div>';
-
-      setTimeout(() => {
-          const results = [];
-
-          for (let categoryKey in resourceDatabase) {
-              const subcats = resourceDatabase[categoryKey].subcategories;
-              for (let subKey in subcats) {
-                  const resources = subcats[subKey].resources;
-                  if (resources) {
-                      results.push(
-                          ...resources.filter(
-                              (r) =>
-                              (r.name && r.name.toLowerCase().includes(query)) ||
-                              (r.description && r.description.toLowerCase().includes(query))
-                          )
-                      );
-                  }
-              }
-          }
-
-          let resultsHTML = `
-            <h2 class="search-results-title">Search Results for "${query}"</h2>
-            <div class="resource-list">
+    newsContent.innerHTML = "";
+    Object.values(newsDatabase.subcategories).forEach(subcategory => {
+      const subcatDiv = document.createElement("div");
+      subcatDiv.innerHTML = `<h4>${subcategory.name}</h4>`;
+      subcategory.resources.forEach(resource => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "news-item";
+        itemDiv.innerHTML = `
+          <h5><a href="${resource.url}" target="_blank" rel="noopener">${resource.name}</a></h5>
+          <p>${resource.description}</p>
         `;
-        console.log(results);
+        subcatDiv.appendChild(itemDiv);
+      });
+      newsContent.appendChild(subcatDiv);
+    });
+  }
 
-          if (results.length === 0) {
-              resultsHTML +=
-                  '<p class="no-results">No resources found matching your search.</p>';
-          } else {
-              results.forEach((res) => {
-                  resultsHTML += `
-                    <div class="resource-card">
-                        <h3><a href="${res.url}" target="_blank" rel="noopener noreferrer">${res.name}</a></h3>
-                        <p class="resource-description">${res.description}</p>
-                    </div>
-                `;
-              });
-          }
+  function debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
 
-          resultsHTML += "</div>";
-          contentArea.innerHTML = resultsHTML;
-      }, 300);
-  });
+  searchInput.addEventListener("input", debounce(() => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query.length < 2) {
+      const firstCategory = Object.keys(resourceDatabase)[0];
+      const firstSub = Object.keys(resourceDatabase[firstCategory].subcategories)[0];
+      return loadResources(firstCategory, firstSub);
+    }
 
-  // modal logic
-  editButton.addEventListener("click", () => {
-      modal.style.display = "block";
-  });
-
-  modalClose.addEventListener("click", () => {
-      modal.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-      if (event.target == modal) {
-          modal.style.display = "none";
+    const results = [];
+    for (const category of Object.values(resourceDatabase)) {
+      for (const sub of Object.values(category.subcategories)) {
+        if (sub.resources) {
+          results.push(...sub.resources.filter(r =>
+            r.name?.toLowerCase().includes(query) ||
+            r.description?.toLowerCase().includes(query)
+          ));
+        }
       }
+    }
+
+    let html = `<h2>Search Results for "${query}"</h2><div class="resource-list">`;
+    html += results.length
+      ? results.map(res => `
+        <div class="resource-card">
+          <h3><a href="${res.url}" target="_blank" rel="noopener noreferrer">${res.name}</a></h3>
+          <p>${res.description}</p>
+        </div>`).join("")
+      : '<p>No resources found.</p>';
+    html += "</div>";
+    contentArea.innerHTML = html;
+  }, 300));
+
+  editButton.addEventListener("click", () => modal.style.display = "block");
+  modalClose.addEventListener("click", () => modal.style.display = "none");
+  window.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
   });
 
-  // resource form submission
+  function resetModalForm() {
+    resourceForm.reset();
+    document.getElementById('resource-id').value = '';
+    modal.style.display = 'none';
+  }
+
   resourceForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const formData = {
-          category: resourceCategorySelect.value,
-          customCategory: otherCategoryInput.value.trim(),
-          subcategory: resourceSubcategorySelect.value,
-          customSubcategory: otherSubcategoryInput.value.trim(),
-          name: document.getElementById("resource-name").value.trim(),
-          url: document.getElementById("resource-url").value.trim(),
-          description: document.getElementById("resource-description").value.trim()
-      };
+    const resourceId = document.getElementById("resource-id").value;
+    const formData = {
+      category: resourceCategorySelect.value,
+      subcategory: resourceSubcategorySelect.value === "other"
+        ? otherSubcategoryInput.value.trim()
+        : resourceSubcategorySelect.value,
+      name: document.getElementById("resource-name").value.trim(),
+      url: document.getElementById("resource-url").value.trim(),
+      description: document.getElementById("resource-description").value.trim()
+    };
 
-      if (formData.subcategory === "other") {
-          if (!formData.customSubcategory) {
-              alert("Please specify a subcategory name");
-              return;
-          }
-          formData.subcategory = formData.customSubcategory;
-      }
+    if ([formData.name, formData.url, formData.category, formData.description].some(v => !v)) {
+      return alert("Please fill in all required fields.");
+    }
 
-      if (
-          !formData.name ||
-          !formData.url ||
-          !formData.category ||
-          !formData.description
-      ) {
-          alert("Please fill in all required fields (marked with *)");
-          return;
-      }
+    function slugify(str) {
+      return str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    }
+    formData.subcategory = slugify(formData.subcategory);
 
-      // In a real app, you would send this data to a server
-      // For now, we'll just log it to the console
-      // and show a success message
-      try {
-          const response = await fetch("http://localhost:3000/api/resources", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-          });
+    try {
+      const method = resourceId ? "PUT" : "POST";
+      const url = resourceId
+        ? `http://localhost:3000/api/resources/${resourceId}`
+        : "http://localhost:3000/api/resources";
 
-          if (!response.ok) {
-              const error = await response.json();
-              throw new Error(error.message || "Failed to save resource");
-          }
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-          alert("Resource submitted successfully!");
-          modal.style.display = "none";
-          resourceForm.reset();
+      if (!response.ok) throw new Error("Failed to save resource");
 
-          const refreshResponse = await fetch("./src/data/resources.json");
-          resourceDatabase = await refreshResponse.json();
-          loadCategories();
+      alert(resourceId ? "Resource updated successfully!" : "Resource submitted successfully!");
+      resetModalForm();
 
-          // close modal and reset form
-          document.getElementById("edit-modal").style.display = "none";
-          document.getElementById("resource-form").reset();
+      const refreshResponse = await fetch("./src/data/resources.json");
+      resourceDatabase = await refreshResponse.json();
+      loadCategories();
 
-          // refresh data
-          // await refreshApplicationData();
-          // In a real app, you would send this data to a server
-          // for now, we'll just log it to the console
-          // and show a success message
-          console.log("Form submitted:", {
-              name: formData.name,
-              category: formData.category,
-              subcategory: document
-                  .getElementById("resource-subcategory")
-                  .value.trim(),
-              description: formData.description,
-          });
-
-          alert(
-              "Thank you for your submission! In a production environment, this will examined and if it is OKAY will be saved to our database."
-          );
-          modal.style.display = "none";
-          resourceForm.reset();
-      } catch (error) {
-          console.error("Submission error:", JSON.stringify(formData));
-          alert(`Error: ${error.message}`);
-      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert(`Error: ${error.message}`);
+    }
   });
+
+  function attachEditResourceEvents() {
+    document.querySelectorAll('.edit-resource-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const category = btn.dataset.category;
+        const subcategory = btn.dataset.subcategory;
+        const index = btn.dataset.index;
+        const resource = resourceDatabase[category].subcategories[subcategory].resources[index];
+
+        // Fill modal form
+        resourceCategorySelect.value = category;
+        updateSubcategoryOptions(category);
+        resourceSubcategorySelect.value = subcategory;
+        document.getElementById("resource-name").value = resource.name;
+        document.getElementById("resource-url").value = resource.url;
+        document.getElementById("resource-description").value = resource.description;
+        document.getElementById("resource-id").value = resource.id || ""; // Ensure resources have an id
+
+        modal.style.display = "block";
+      });
+    });
+  }
+
+  // Call this at the end of loadResources
+  attachEditResourceEvents();
 });

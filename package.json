@@ -2,12 +2,11 @@
   "name": "adrr",
   "version": "1.0.0",
   "description": "This repository should contain useful (hopefully all) resource links and references that could help the Alzheimer's disease research project.",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server/server.js",
-    "build": "vite build",
-    "lint": "eslint src/ && stylelint public/css/"
+    "lint": "eslint src/ && stylelint src/pages/css/",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "repository": {
     "type": "git",
@@ -22,9 +21,7 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "express": "^5.1.0"
   },
   "keywords": [],
   "devDependencies": {}

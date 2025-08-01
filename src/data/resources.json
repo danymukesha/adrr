@@ -198,6 +198,24 @@
             "name": "JPND Research",
             "url": "https://www.neurodegenerationresearch.eu/",
             "description": "EU Joint Programme on Neurodegenerative Disease Research."
+          },
+          {
+            "id": "global-alz",
+            "name": "Global Alzheimer's Platform Foundation (GAP)",
+            "url": "https://www.globalalzplatform.org/",
+            "description": "Accelerating clinical trials for Alzheimer's disease."
+          },
+          {
+            "id": "1754049689488",
+            "name": "Dany",
+            "url": "https://ncmir.ucsd.edu/",
+            "description": "dsadcsadvsfvsdcascs"
+          },
+          {
+            "id": "1754050875725",
+            "name": "cds",
+            "url": "https://ncmir.ucsd.edu/",
+            "description": "dcsadcasdcasxa"
           }
         ]
       },
@@ -718,7 +736,8 @@
             "name": "Software",
             "url": "https://adknowledgeportal.synapse.org/Explore/Computational%20Tools",
             "description": "A collection of software tools for Alzheimer's research."
-          },{
+          },
+          {
             "id": "rnaseq",
             "name": "RNA-Seq Tools for AD",
             "url": "https://www.synapse.org/#!Synapse:syn2580853/wiki/409844",
@@ -1325,6 +1344,22 @@
             "name": "ADDI Workbench",
             "url": "https://www.alzheimersdata.org/",
             "description": "Integrated data sharing platform."
+          }
+        ]
+      }
+    }
+  },
+  "dataset": {
+    "name": "Dataset",
+    "subcategories": {
+      "genomics": {
+        "name": "Genomics",
+        "resources": [
+          {
+            "id": "1234567890",
+            "name": "ADNI Genomics",
+            "url": "https://adni.loni.usc.edu/",
+            "description": "Genomics data from ADNI."
           }
         ]
       }
