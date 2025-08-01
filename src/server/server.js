@@ -90,8 +90,6 @@ app.post('/api/resources', async (req, res) => {
   }
 });
 
-
-
 // POST -> Add News
 app.post('/api/news', async (req, res) => {
   try {
@@ -187,6 +185,39 @@ app.delete('/api/resources/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete resource.' });
   }
 });
+
+const express = require("express");
+const axios = require("axios");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Store in .env or deploy environment variable
+const REPO_OWNER = "danymukesha";
+const REPO_NAME = "adrr";
+
+app.post("/submit-issue", async (req, res) => {
+    const { title, body, labels } = req.body;
+
+    try {
+        const response = await axios.post(
+            `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`,
+            { title, body, labels },
+            {
+                headers: {
+                    Authorization: `Bearer ${GITHUB_TOKEN}`,
+                    Accept: "application/vnd.github+json",
+                },
+            }
+        );
+        res.status(200).json({ success: true, issue_url: response.data.html_url });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+app.listen(3000, () => console.log("Proxy running on port 3000"));
 
 
 app.listen(PORT, () => {
